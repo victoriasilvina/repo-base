@@ -1,7 +1,7 @@
 # Zona de conflito intencional: ambos os devs modificarão format_task e filter_tasks
 
 def format_task(task):
-    status = "[ ]"
+    status = "[✓]" if task.get("done", False) else "[ ]"
 
     task_id = task["id"]
     priority = task["priority"]
