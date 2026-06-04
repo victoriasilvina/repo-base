@@ -7,6 +7,7 @@ def format_task(task):
     priority = task["priority"]
     title = task["title"]
 
+
     formatted_task = f"{status} [{priority}] #{task_id} - {title}"
 
     return formatted_task
