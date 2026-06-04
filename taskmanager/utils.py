@@ -2,7 +2,15 @@
 
 def format_task(task):
     status = "[ ]"
-    return f"{status} [{task['priority']}] #{task['id']} - {task['title']}"
+
+    task_id = task["id"]
+    priority = task["priority"]
+    title = task["title"]
+
+
+    formatted_task = f"{status} [{priority}] #{task_id} - {title}"
+
+    return formatted_task
 
 def filter_tasks(tasks, show_done=True):
     if show_done:
