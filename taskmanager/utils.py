@@ -5,10 +5,13 @@ def format_task(task):
     return f"{status} [{task['priority'].upper()}] #{task['id']} - {task['title']}"
 
 def filter_tasks(tasks, show_done=True):
-    if show_done:
-        return sorted(tasks, key=lambda t: t["id"])
+    filtered = tasks if show_done else [
+        t for t in tasks if not t.get("done", False)
+    ]
+
+    priority_order = {"high": 0, "medium": 1, "low": 2}
 
     return sorted(
-        [t for t in tasks if not t.get("done", False)],
-        key=lambda t: t["id"]
+        filtered,
+        key=lambda t: priority_order.get(t["priority"], 99)
     )
