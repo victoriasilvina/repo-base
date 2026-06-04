@@ -1,7 +1,7 @@
 # Zona de conflito intencional: ambos os devs modificarão format_task e filter_tasks
 
 def format_task(task):
-    status = "[ ]"
+    status = "[✓]" if task.get("done", False) else "[ ]"
 
     task_id = task["id"]
     priority = task["priority"]
@@ -13,6 +13,13 @@ def format_task(task):
     return formatted_task
 
 def filter_tasks(tasks, show_done=True):
-    if show_done:
-        return tasks
-    return [t for t in tasks if not t["done"]]
+    filtered = tasks if show_done else [
+        t for t in tasks if not t.get("done", False)
+    ]
+
+    priority_order = {"high": 0, "medium": 1, "low": 2}
+
+    return sorted(
+        filtered,
+        key=lambda t: priority_order.get(t["priority"], 99)
+    )
