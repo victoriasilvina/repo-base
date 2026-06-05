@@ -19,7 +19,4 @@ def filter_tasks(tasks, show_done=True):
 
     priority_order = {"high": 0, "medium": 1, "low": 2}
 
-    return sorted(
-        filtered,
-        key=lambda t: priority_order.get(t["priority"], 99)
-    )
+    return None
